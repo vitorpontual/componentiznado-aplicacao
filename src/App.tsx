@@ -1,22 +1,22 @@
 import { useState } from "react";
 import { Content } from "./components/Content";
 import { SideBar } from "./components/SideBar";
+import { MoviesProvider } from "./hooks/MovieContext";
 
 import './styles/global.scss';
 
 
 
 export function App() {
-  const [selectedGenreId, setSelectedGenreId] = useState(1);
 
-  function handleClickButton(id: number) {
-    setSelectedGenreId(id);
-  }
   return (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <SideBar selectedGenreId={selectedGenreId} handleClickButton={handleClickButton} />
+    <MoviesProvider>
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
 
-      <Content selectedGenreId={selectedGenreId}/>
-    </div>
+        <Content />
+        <SideBar />
+      </div>
+
+    </MoviesProvider>
   )
 }
